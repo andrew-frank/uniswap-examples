@@ -34,6 +34,8 @@ export async function getPoolInfo(): Promise<PoolInfo> {
     provider
   )
 
+  console.log('poolContract', poolContract)
+
   const [token0, token1, fee, tickSpacing, liquidity, slot0] =
     await Promise.all([
       poolContract.token0(),
