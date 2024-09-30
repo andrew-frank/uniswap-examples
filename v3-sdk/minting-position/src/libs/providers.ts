@@ -4,7 +4,7 @@ import { BaseProvider } from '@ethersproject/providers'
 
 // Single copies of provider and wallet
 const mainnetProvider = new ethers.providers.JsonRpcProvider(
-  CurrentConfig.rpc.mainnet
+  CurrentConfig.rpc.url
 )
 const wallet = createWallet()
 
@@ -43,9 +43,9 @@ export async function sendTransaction(
   transaction: ethers.providers.TransactionRequest
 ): Promise<TransactionState> {
   if (CurrentConfig.env === Environment.WALLET_EXTENSION) {
-    return sendTransactionViaExtension(transaction)
+    return await sendTransactionViaExtension(transaction)
   } else {
-    return sendTransactionViaWallet(transaction)
+    return await sendTransactionViaWallet(transaction)
   }
 }
 
@@ -70,8 +70,8 @@ export async function connectBrowserExtensionWallet() {
 
 function createWallet(): ethers.Wallet {
   let provider = mainnetProvider
-  if (CurrentConfig.env == Environment.LOCAL) {
-    provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.local)
+  if (CurrentConfig.env === Environment.LOCAL) {
+    provider = new ethers.providers.JsonRpcProvider(CurrentConfig.rpc.url)
   }
   return new ethers.Wallet(CurrentConfig.wallet.privateKey, provider)
 }
@@ -113,7 +113,7 @@ async function sendTransactionViaWallet(
   }
   const txRes = await wallet.sendTransaction(transaction)
 
-  let receipt = null
+  let receipt: ethers.providers.TransactionReceipt | null = null
   const provider = getProvider()
   if (!provider) {
     return TransactionState.Failed

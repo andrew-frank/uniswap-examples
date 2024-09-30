@@ -1,37 +1,37 @@
 // This file stores web3 related constants such as addresses, token definitions, ETH currency references and ABI's
 
-import { SupportedChainId, Token } from '@uniswap/sdk-core'
+import { ChainId, Token } from '@uniswap/sdk-core'
 
 // Addresses
 
 export const POOL_FACTORY_CONTRACT_ADDRESS =
-  '0x1F98431c8aD98523631AE4a59f267346ea31F984'
+  '0x0227628f3F023bb0B980b67D528571c95c6DaC1c'
 export const NONFUNGIBLE_POSITION_MANAGER_CONTRACT_ADDRESS =
-  '0xC36442b4a4522E871399CD717aBDD847Ab11FE88'
+  '0x1238536071e1c677a632429e3655c799b22cda52'
 
 // Currencies and Tokens
 
-export const USDC_TOKEN = new Token(
-  SupportedChainId.MAINNET,
-  '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
-  6,
-  'USDC',
-  'USD//C'
+export const AVT_TOKEN = new Token(
+  ChainId.SEPOLIA,
+  '0x608156959E3a2192a870b4BaC660200afB4c649F',
+  18,
+  'AVT',
+  'Aventus Token'
 )
 
-export const DAI_TOKEN = new Token(
-  SupportedChainId.MAINNET,
-  '0x6B175474E89094C44Da98b954EedeAC495271d0F',
+export const WETH_TOKEN = new Token(
+  ChainId.SEPOLIA,
+  '0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9',
   18,
-  'DAI',
-  'Dai Stablecoin'
+  'WETH',
+  'Wrapped Ether'
 )
 
 // Transactions
 
 export const MAX_FEE_PER_GAS = '100000000000'
 export const MAX_PRIORITY_FEE_PER_GAS = '100000000000'
-export const TOKEN_AMOUNT_TO_APPROVE_FOR_TRANSFER = 1000000000000
+export const TOKEN_AMOUNT_TO_APPROVE_FOR_TRANSFER = '1000000000000000000'
 
 // ABI's
 
